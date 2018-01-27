@@ -17,7 +17,7 @@ class LoginCest
     public function _fixtures()
     {
         return [
-            'user' => [
+            'User' => [
                 'class' => UserFixture::className(),
                 'dataFile' => codecept_data_dir() . 'login_data.php'
             ]
@@ -26,14 +26,14 @@ class LoginCest
 
     public function _before(FunctionalTester $I)
     {
-        $I->amOnRoute('site/login');
+        $I->amOnRoute('auth/auth/login');
     }
 
     protected function formParams($login, $password)
     {
         return [
-            'LoginForm[username]' => $login,
-            'LoginForm[password]' => $password,
+            'ContactForm[username]' => $login,
+            'ContactForm[password]' => $password,
         ];
     }
 
@@ -47,7 +47,7 @@ class LoginCest
     public function checkWrongPassword(FunctionalTester $I)
     {
         $I->submitForm('#login-form', $this->formParams('admin', 'wrong'));
-        $I->seeValidationError('Incorrect username or password.');
+        $I->see('Incorrect username or password.');
     }
     
     public function checkValidLogin(FunctionalTester $I)

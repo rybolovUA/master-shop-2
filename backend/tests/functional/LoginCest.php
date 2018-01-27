@@ -21,7 +21,7 @@ class LoginCest
     public function _fixtures()
     {
         return [
-            'user' => [
+            'User' => [
                 'class' => UserFixture::className(),
                 'dataFile' => codecept_data_dir() . 'login_data.php'
             ]
